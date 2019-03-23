@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:columnCount="2"
+    android:orientation="horizontal"
+    tools:context=".dialog_fragment">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:id="@+id/textViewMessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:text="This item will be deleted. Do you want to continue?"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <!--we used a linear layout here because we need it in order to evenly distribute the buttons -->
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnSpan="2" >
+
+        <Button
+            android:id="@+id/buttonOk"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OK" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CANCEL" />
+
+    </LinearLayout>
+
+</GridLayout>
