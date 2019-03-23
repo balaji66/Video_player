@@ -1,11 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-
-    <TextView
+<LinearLayout
+    android:layout_marginStart="50dp"
+    android:layout_marginTop="50dp"
+    android:layout_marginEnd="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:weightSum="4"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="timing" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/monday"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="22dp"
+            android:text="Open"
+            android:id="@+id/textViewMondayOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewMondayOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:id="@+id/textViewMondayClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewMondayCloseTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tuesday"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:text="Open"
+            android:id="@+id/textViewTuesdayOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewTuesdayOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:id="@+id/textViewTuesdayClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewTuesdayCloseTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wednesday"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            android:text="Open"
+            android:id="@+id/textViewWednesdayOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewWednesdayOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:id="@+id/textViewWednesdayClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewWednesdayCloseTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thursday"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:text="Open"
+            android:id="@+id/textViewThursdayOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewThursdayOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:id="@+id/textViewThursdayClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewThursdayCloseTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/friday"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="35dp"
+            android:text="Open"
+            android:id="@+id/textViewFridayOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewFridayOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:id="@+id/textViewFridayClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewFridayCloseTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/saturday"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="18dp"
+            android:text="Open"
+            android:id="@+id/textViewSaturdayOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewSaturdayOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:id="@+id/textViewSaturdayClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewSaturdayCloseTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="26dp"
+            android:text="Open"
+            android:id="@+id/textViewSundayOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewSundayOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:id="@+id/textViewSundayClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:text="Time"
+            android:id="@+id/textViewSundayCloseTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
 
 </FrameLayout>

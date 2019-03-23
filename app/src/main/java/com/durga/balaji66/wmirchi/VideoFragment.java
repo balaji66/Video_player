@@ -1,5 +1,7 @@
 package com.durga.balaji66.wmirchi;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,16 +27,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 public class VideoFragment extends Fragment {
 
     private static final String TAG = VideoFragment.class.getName();
 
-    private static long stopPosition;
     private VideoView mVideoView;
     MediaController mediaController;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
-    String video_url ;
+    private  static String video_url ;
     String url ="https://egcashback.in/manage/api/video_ads/all/?X-Api-Key=B1271BD939B74CA8D5C9A183C53BACDD&field1=video_status&filter1=Active&field=shop_id&filter=1155";
 
     public VideoFragment() {
@@ -50,7 +53,6 @@ public class VideoFragment extends Fragment {
         sendAndRequestResponse();
         mVideoView= view.findViewById(R.id.videoView);
         mediaController= new MediaController(getContext());
-        stopPosition =0;
 
         // Inflate the layout for this fragment
         return view;
@@ -84,8 +86,6 @@ public class VideoFragment extends Fragment {
                             }
                         }
                     }
-                    playVideo();
-
 
                 }
                 catch (JSONException e) {
@@ -106,23 +106,6 @@ public class VideoFragment extends Fragment {
         mRequestQueue.add(mStringRequest);
     }
 
-
-
-//    @Override
-//    public void onPause() {
-//        Log.d(TAG, "onPause called");
-//        stopPosition = mVideoView.getCurrentPosition(); //stopPosition is an int
-//        mVideoView.pause();
-//        super.onPause();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        mVideoView.seekTo(stopPosition);
-//        mVideoView.resume();
-//    }
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -131,16 +114,13 @@ public class VideoFragment extends Fragment {
             {
                 //pause or stop video
                 mVideoView.pause();
-                stopPosition = mVideoView.getCurrentPosition(); //stopPosition is an int
                 mediaController.hide();
             }
 
             if (isVisibleToUser) {
                 //play your video
-                sendAndRequestResponse();
-                //mVideoView.seekTo((int) stopPosition);
-                //mVideoView.resume();
-                //mediaController.show();
+                playVideo();
+                mediaController.show();
             }
         }
 
@@ -148,14 +128,30 @@ public class VideoFragment extends Fragment {
 
     public void playVideo()
     {
-        Uri uri=Uri.parse(video_url);
-        mVideoView.setVideoURI(uri);
-        mVideoView.setMediaController(mediaController);
+        Uri video = Uri.parse(video_url);
         mediaController.setAnchorView(mVideoView);
-        Toast.makeText(getContext(), (int) stopPosition,Toast.LENGTH_LONG).show();
-        mVideoView.seekTo((int) stopPosition);
+        mVideoView.requestFocus();
+        mVideoView.setMediaController(mediaController);
+        mVideoView.setVideoURI(video);
         mVideoView.start();
 
-
+        mVideoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                String title = "Unable to read video";
+                String message = "mp : "+mp + "\n what :"+what+"\n extra : "+extra;
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle(title);
+                dialog.setMessage(message);
+                dialog.setNeutralButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                return false;
+            }
+        });
     }
 }
