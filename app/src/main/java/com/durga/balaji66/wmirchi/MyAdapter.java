@@ -7,12 +7,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MyAdapter extends FragmentPagerAdapter {
 
-    private Context myContext;
     private int totalTabs;
 
     public MyAdapter(Context context, FragmentManager fm, int totalTabs) {
         super(fm);
-        myContext = context;
         this.totalTabs = totalTabs;
     }
 
@@ -21,9 +19,10 @@ public class MyAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new TimingFragment();
-            case 1:
                 return new VideoFragment();
+
+            case 1:
+                return new TimingFragment();
 
             default:
                 return null;

@@ -1,6 +1,7 @@
 package com.durga.balaji66.wmirchi;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class TimingFragment  extends Fragment {
 
     private static final String TAG = TimingFragment.class.getName();
@@ -31,19 +34,15 @@ public class TimingFragment  extends Fragment {
     private TextView mTextViewFridayOpen, mTextViewFridayOpenTime,mTextViewFridayClose,mTextViewFridayCloseTime;
     private TextView mTextViewSaturdayOpen, mTextViewSaturdayOpenTime,mTextViewSaturdayClose,mTextViewSaturdayCloseTime;
     private TextView mTextViewSundayOpen, mTextViewSundayOpenTime,mTextViewSundayClose,mTextViewSundayCloseTime;
-    private RequestQueue mRequestQueue;
-    private StringRequest mStringRequest;
-    private String url ="https://www.egcashback.in/manage/api/timimgs/all/?X-Api-Key=B1271BD939B74CA8D5C9A183C53BACDD&field=shop_id&filter=2";
 
     public TimingFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = new View(getContext());
-        view =inflater.inflate(R.layout.fragment_timing, container, false);
+        View view =inflater.inflate(R.layout.fragment_timing, container, false);
         initializeViews(view);
         sendAndRequestResponse();
         return view;
@@ -92,21 +91,22 @@ public class TimingFragment  extends Fragment {
     private void sendAndRequestResponse() {
 
         //RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(getContext());
+        RequestQueue mRequestQueue = Volley.newRequestQueue(Objects.requireNonNull(getContext()));
 
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        String url = "https://www.egcashback.in/manage/api/timimgs/all/?X-Api-Key=B1271BD939B74CA8D5C9A183C53BACDD&field=shop_id&filter=2";
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try {
-                    JSONObject obj =new JSONObject(response);
-                    if(obj.has("data")){
-                        JSONObject obj1= obj.getJSONObject("data");
-                        if(obj1.has("timimgs")){
-                            JSONArray jsonArray=obj1.getJSONArray("timimgs");
-                            int length = jsonArray .length();
-                            for(int i=0; i<length; i++) {
+                    JSONObject obj = new JSONObject(response);
+                    if (obj.has("data")) {
+                        JSONObject obj1 = obj.getJSONObject("data");
+                        if (obj1.has("timimgs")) {
+                            JSONArray jsonArray = obj1.getJSONArray("timimgs");
+                            int length = jsonArray.length();
+                            for (int i = 0; i < length; i++) {
                                 JSONObject jObj = jsonArray.getJSONObject(i);
                                 mTextViewMondayOpen.setText(jObj.getString("a1"));
                                 mTextViewMondayOpenTime.setText(jObj.getString("a2"));
@@ -149,18 +149,17 @@ public class TimingFragment  extends Fragment {
                     //playVideo();
 
 
-                }
-                catch (JSONException e) {
+                } catch (JSONException e) {
                     Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
                 }
 
             }
 
-        } , new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.i(TAG,"Error :" + error.toString());
+                Log.i(TAG, "Error :" + error.toString());
 
             }
         });
@@ -168,5 +167,27 @@ public class TimingFragment  extends Fragment {
         mRequestQueue.add(mStringRequest);
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (this.isVisible()) {
+            if (!isVisibleToUser)   // If we are becoming invisible, then...
+            {
+                if(mTextViewMondayOpen.getText().equals("Open")){
+                    sendAndRequestResponse();
+                }
+
+            }
+
+            if (isVisibleToUser) {
+                if(mTextViewMondayOpen.getText().equals("Open")){
+                    sendAndRequestResponse();
+                }
+
+            }
+        }
+
     }
+
+}
 
